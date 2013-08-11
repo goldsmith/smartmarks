@@ -30,7 +30,7 @@
 				cursor: pointer;
 			}
 
-			#stop, #continue {
+			#stop, #cont {
 				display: none;
 				margin-right: 1em;
 			}
@@ -46,14 +46,15 @@
 			<span class="label">m</span>
 			<span contenteditable id="seconds">0</span>
 			<span class="label">s</span>
-			<p id="start"    onclick="startTimer()">Start timer!</p>
-			<p id="stop"     onclick="stopTimer()">Stop!</p>
-			<p id="continue" onclick="continueTimer()">Continue</p>
-			<p id="reset"    onclick="resetTimer()">Reset</p>
+			<p id="start" onclick="startTimer()">Start timer!</p>
+			<p id="stop"  onclick="stopTimer()">Stop!</p>
+			<p id="cont"  onclick="continueTimer()">Continue</p>
+			<p id="reset" onclick="resetTimer()">Reset</p>
 		</div>
 
 		<script type="text/javascript">
 			var	timer, timerInterval;
+			var stop = document.getElementById("stop");
 
 			minutes.focus();
 
@@ -65,7 +66,7 @@
 					return {
 						minutes: Math.floor(seconds/60),
 						seconds: seconds % 60
-					}
+					};
 				};
 
 				return {
@@ -92,7 +93,7 @@
 					}
 				};
 
-			}
+			};
 
 			function startTimer() {
 
@@ -117,7 +118,7 @@
 				start.style.display = "none";
 				stop.style.display = "block";
 
-			}
+			};
 
 			function stopTimer() {
 				window.clearInterval(timerInterval);
@@ -125,21 +126,21 @@
 				stop.style.display = "none";
 				cont.style.display = "block";
 				reset.style.display = "block";
-			}
+			};
 
 			function continueTimer() {
 				cont.style.display = "none";
 				reset.style.display = "none";
 
 				startTimer();
-			}
+			};
 
 			function resetTimer() {
 				cont.style.display = "none";
 				reset.style.display = "none";
 
 				clearTimer();
-			}
+			};
 
 			function clearTimer() {
 				window.clearInterval(timerInterval);
@@ -148,7 +149,7 @@
 				start.style.display = "block";
 				minutes.innerText = 0;
 				seconds.innerText = 0;
-			}
+			};
 
 		</script>
 	</body>
