@@ -1,0 +1,181 @@
+<html>
+	<head>
+		<title>Stopwatch</title>
+	</head>
+	<body>
+		<style>
+
+			body {
+				font-family: sans-serif;
+				font-size: 4rem;
+			}
+
+			#timer {
+				text-align: center;
+				margin-top: 25%;
+			}
+
+			span {
+				display: inline-block;
+				margin-left: -0.25em;
+			}
+
+			p {
+				font-size: 2rem;
+				color: blue;
+				text-decoration: underline;
+				cursor: pointer;
+			}
+
+			#stop, #cont {
+				display: none;
+				margin-right: 1em;
+			}
+
+			#reset {
+				display: none;
+			}
+
+		</style>
+
+		<div id="timer">
+			<span id="minutes">00</span>
+			<span>:</span>
+			<span id="seconds">00</span>
+			<span>:</span>
+			<span id="milliseconds">000</span>
+			<p id="start" onclick="startTimer()">Start stopwatch!</p>
+			<p id="stop"  onclick="stopTimer()">Stop!</p>
+			<p id="cont"  onclick="continueTimer()">Continue</p>
+			<p id="reset" onclick="resetTimer()">Reset</p>
+		</div>
+
+		<script type="text/javascript">
+			var	watch, milliInterval, secInterval, minInterval;
+			var stop = document.getElementById("stop");
+
+			minutes.focus();
+
+			function StopWatch() {
+
+				var millis,
+					secs,
+					mins;
+
+				return {
+
+					setTime: function(milliseconds, seconds, minutes) {
+						millis = parseInt(milliseconds);
+						secs = parseInt(seconds);
+						mins = parseInt(minutes);
+					},
+
+					getTime: function() {
+						return {
+							milliseconds: millis,
+							seconds: secs,
+							minutes: mins
+						};
+					},
+
+					reset: function() {
+						millis = 0;
+						secs = 0;
+						mins = 0;
+					},
+
+					update: function(time) {
+						if (time === "milliseconds") {
+							/* minimum browser interval is 5 milliseconds */
+							millis = (millis + 5) % 1000;
+							return millis;
+						}
+						else if (time === "seconds") {
+							secs = (secs + 1) % 60;
+							return secs;
+						}
+						else if (time === "minutes") {
+							mins += 1;
+							return mins;
+						}
+						else {
+							return;
+						}
+							
+					}
+				};
+
+			};
+
+			function startTimer() {
+
+				watch = StopWatch();
+				watch.setTime(minutes.innerText, seconds.innerText, milliseconds.innerText);
+
+				milliInterval = window.setInterval(function() {
+					current = String(watch.update("milliseconds"));
+					if (current.length === 3) {
+						milliseconds.innerText = current;
+					}
+					else if (current.length === 2) {
+						milliseconds.innerText = "0" + current;
+					}
+					else {
+						milliseconds.innerText = "00" + current;
+					}
+				}, 5);
+
+				secInterval = window.setInterval(function() {
+					current = String(watch.update("seconds"));
+					seconds.innerText = (current.length === 2) ? current : "0" + current;
+				}, 1000);
+
+				minInterval = window.setInterval(function() {
+					current = String(watch.update("minutes"));
+					minutes.innerText = (current.length === 2) ? current : "0" + current;
+				}, 60000);
+
+				start.style.display = "none";
+				stop.style.display = "block";
+
+			};
+
+			function stopTimer() {
+				window.clearInterval(milliInterval);
+				window.clearInterval(secInterval);
+				window.clearInterval(minInterval);
+
+				stop.style.display = "none";
+				cont.style.display = "block";
+				reset.style.display = "block";
+			};
+
+			function continueTimer() {
+				cont.style.display = "none";
+				reset.style.display = "none";
+
+				startTimer();
+			};
+
+			function resetTimer() {
+				cont.style.display = "none";
+				reset.style.display = "none";
+
+				clearTimer();
+			};
+
+			function clearTimer() {
+				window.clearInterval(milliInterval);
+				window.clearInterval(secInterval);
+				window.clearInterval(minInterval);
+				watch.reset();
+
+				start.style.display = "block";
+				minutes.innerText = "00";
+				seconds.innerText = "00";
+				milliseconds.innerText = "000";
+			};
+
+		</script>
+	</body>
+</html>
