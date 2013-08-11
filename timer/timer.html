@@ -1,0 +1,155 @@
+<html>
+	<head>
+		<title>Timer</title>
+	</head>
+	<body>
+		<style>
+
+			body {
+				font-family: sans-serif;
+				font-size: 4rem;
+			}
+
+			#timer {
+				text-align: center;
+				margin-top: 25%;
+			}
+
+			span {
+				display: inline-block;
+			}
+
+			span.label {
+				margin-left: -0.25em;
+			}
+
+			p {
+				font-size: 2rem;
+				color: blue;
+				text-decoration: underline;
+				cursor: pointer;
+			}
+
+			#stop, #continue {
+				display: none;
+				margin-right: 1em;
+			}
+
+			#reset {
+				display: none;
+			}
+
+		</style>
+
+		<div id="timer">
+			<span contenteditable id="minutes">0</span>
+			<span class="label">m</span>
+			<span contenteditable id="seconds">0</span>
+			<span class="label">s</span>
+			<p id="start"    onclick="startTimer()">Start timer!</p>
+			<p id="stop"     onclick="stopTimer()">Stop!</p>
+			<p id="continue" onclick="continueTimer()">Continue</p>
+			<p id="reset"    onclick="resetTimer()">Reset</p>
+		</div>
+
+		<script type="text/javascript">
+			var	timer, timerInterval;
+
+			minutes.focus();
+
+			function Timer() {
+
+				var count;
+
+				var secondsToMinutes = function(seconds) {
+					return {
+						minutes: Math.floor(seconds/60),
+						seconds: seconds % 60
+					}
+				};
+
+				return {
+
+					setCount: function(minutes, seconds) {
+						count = parseInt(minutes) * 60 + parseInt(seconds);
+					},
+
+					getCount: function() {
+						return secondsToMinutes(count);
+					},
+
+					reset: function() {
+						count = 0;
+					},
+
+					update: function() {
+						if (--count > 0) {
+							return secondsToMinutes(count);
+						}
+						else {
+							throw new RangeError("Finished with timer");
+						}		
+					}
+				};
+
+			}
+
+			function startTimer() {
+
+				timer = Timer();
+				timer.setCount(minutes.innerText, seconds.innerText);
+
+				timerInterval = window.setInterval(function() {
+					try {
+						time = timer.update();
+						minutes.innerText = time.minutes;
+						seconds.innerText = time.seconds;
+					}
+					catch(e) {
+						minutes.innerText = 0;
+						seconds.innerText = 0;
+						alert("Timer finished!");
+						stop.style.display = "none";
+						clearTimer();
+					}
+				}, 1000);
+
+				start.style.display = "none";
+				stop.style.display = "block";
+
+			}
+
+			function stopTimer() {
+				window.clearInterval(timerInterval);
+
+				stop.style.display = "none";
+				cont.style.display = "block";
+				reset.style.display = "block";
+			}
+
+			function continueTimer() {
+				cont.style.display = "none";
+				reset.style.display = "none";
+
+				startTimer();
+			}
+
+			function resetTimer() {
+				cont.style.display = "none";
+				reset.style.display = "none";
+
+				clearTimer();
+			}
+
+			function clearTimer() {
+				window.clearInterval(timerInterval);
+				timer.reset();
+
+				start.style.display = "block";
+				minutes.innerText = 0;
+				seconds.innerText = 0;
+			}
+
+		</script>
+	</body>
+</html>
