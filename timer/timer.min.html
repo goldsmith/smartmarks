@@ -51,6 +51,7 @@ data:text/html, <html> <head> <title>Timer</title> </head> <body> <style>body{fo
 						time = timer.update();
 						minutes.innerText = time.minutes;
 						seconds.innerText = time.seconds;
+						document.title = time.minutes + "m " + time.seconds + "s left";
 					}
 					catch(e) {
 						minutes.innerText = 0;
