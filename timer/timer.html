@@ -41,6 +41,8 @@
 
 		</style>
 
+		<audio></audio>
+
 		<div id="timer">
 			<span contenteditable id="minutes">0</span>
 			<span class="label">m</span>
@@ -54,13 +56,19 @@
 
 		<script type="text/javascript">
 			var	timer, timerInterval;
-			var stop = document.getElementById("stop");
+			var stop = document.getElementById("stop"),
+				audio = document.getElementsByTagName("audio")[0];
+
+			var audio_src = "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";
 
 			minutes.focus();
+			audio.src = "data:audio/mp3;base64," + audio_src;
+			audio.loop = true;
 
 			function Timer() {
 
 				var count;
+				var end;
 
 				var secondsToMinutes = function(seconds) {
 					return {
@@ -69,27 +77,35 @@
 					};
 				};
 
+				var timeLeft = function(currentTime) {
+					var minutes = Math.floor((end.getTime() - currentTime.getTime()) / 1000);
+					return secondsToMinutes(minutes);
+				};
+
 				return {
 
 					setCount: function(minutes, seconds) {
-						count = parseInt(minutes) * 60 + parseInt(seconds);
+						end = new Date();
+						end.setMinutes(end.getMinutes() + parseInt(minutes));
+						end.setSeconds(end.getSeconds() + parseInt(seconds) + 1);
 					},
 
 					getCount: function() {
-						return secondsToMinutes(count);
+						return timeLeft(new Date());
 					},
 
 					reset: function() {
-						count = 0;
+						end = new Date();
 					},
 
 					update: function() {
-						if (--count > 0) {
-							return secondsToMinutes(count);
+						var current = new Date();
+						if (current > end) {
+							throw new RangeError("Finished with timer");
 						}
 						else {
-							throw new RangeError("Finished with timer");
-						}		
+							return timeLeft(current);
+						}	
 					}
 				};
 
@@ -110,11 +126,13 @@
 					catch(e) {
 						minutes.innerText = 0;
 						seconds.innerText = 0;
+						audio.play();
 						alert("Timer finished!");
+						audio.pause();
 						stop.style.display = "none";
 						clearTimer();
 					}
-				}, 1000);
+				}, 250);
 
 				start.style.display = "none";
 				stop.style.display = "block";
