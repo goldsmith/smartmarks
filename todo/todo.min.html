@@ -1,1 +1,31 @@
-data:text/html, <html> <head> <title>Todo</title> </head> <body> <style>#tasks,textarea{display:block;width:50rem;margin:100px auto 50px auto;padding:10px;font-size:1.5rem;font-family:sans-serif}.task{display:inline-block;width:100%;margin-bottom:1em}.task span{float:right;color:black}.checkbox{border:1px solid black;width:1em;height:1em;display:inline-block;cursor:pointer;margin-right:1rem;box-sizing:border-box}.task.completed{color:lightgrey;text-decoration:line-through}.task.completed span{color:#d3d3d3}.task.completed .checkbox{text-align:center;vertical-align:top;padding-bottom:1.1em;border-color:lightgrey}textarea{padding:.5em 0 0 .5em}</style> <ul id="tasks"></ul> <textarea placeholder="Add a task..."></textarea> </body> </html>
+data:text/html, <html> <head> <title>Todo</title> </head> <body> <style>#tasks,textarea{display:block;width:50rem;margin:100px auto 50px auto;padding:10px;font-size:1.5rem;font-family:sans-serif}.task{display:inline-block;width:100%;margin-bottom:1em}.task span{float:right;color:black;cursor:pointer}.checkbox{border:1px solid black;width:1em;height:1em;display:inline-block;cursor:pointer;margin-right:1rem;box-sizing:border-box}.task.completed{color:lightgrey;text-decoration:line-through}.task.completed span{color:#d3d3d3}.task.completed .checkbox{text-align:center;vertical-align:top;padding-bottom:1.1em;border-color:lightgrey}textarea{padding:.5em 0 0 .5em}</style> <ul id="tasks"></ul> <textarea placeholder="Add a task..."></textarea> <script type="text/javascript">
+			var input = document.getElementsByTagName('textarea')[0];
+
+			function on_checkbox_click(e) {
+				if (this.innerText === "") {
+					this.innerText = "X";
+					this.parentElement.classList.add("completed");
+				}
+				else {
+					this.innerText = "";
+					this.parentElement.classList.remove("completed");
+				}
+			}
+
+			function on_x_click(e) {
+				tasks.removeChild(this.parentElement)
+			}
+		
+			input.onkeydown = function(e) {
+				if (e.which === 13) {
+					var task = document.createElement("div");
+					task.className = "task";
+					task.innerHTML = "<div class='checkbox'></div>" + input.value + "<span>X</span>";
+					task.getElementsByClassName('checkbox')[0].onclick = on_checkbox_click;
+					task.getElementsByTagName('span')[0].onclick = on_x_click;
+					tasks.appendChild(task);	
+					input.value = '';
+					return false;
+				}
+			};
+		</script> </body> </html>

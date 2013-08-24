@@ -19,9 +19,11 @@
 				margin-bottom: 1em;
 			}
 
+			/* the X for removing a task */
 			.task span {
 				float: right;
 				color: black;
+				cursor: pointer;
 			}	
 
 			.checkbox {
@@ -40,7 +42,7 @@
 			}
 
 			.task.completed span {
-				color: rgb(211, 211, 211)
+				color: rgb(211, 211, 211);
 			}
 
 			.task.completed .checkbox {
@@ -57,5 +59,36 @@
 		</style>
 		<ul id="tasks"></ul>
 		<textarea placeholder="Add a task..."></textarea>	
+		<script type="text/javascript">
+			var input = document.getElementsByTagName('textarea')[0];
+
+			function on_checkbox_click(e) {
+				if (this.innerText === "") {
+					this.innerText = "X";
+					this.parentElement.classList.add("completed");
+				}
+				else {
+					this.innerText = "";
+					this.parentElement.classList.remove("completed");
+				}
+			}
+
+			function on_x_click(e) {
+				tasks.removeChild(this.parentElement)
+			}
+		
+			input.onkeydown = function(e) {
+				if (e.which === 13) {
+					var task = document.createElement("div");
+					task.className = "task";
+					task.innerHTML = "<div class='checkbox'></div>" + input.value + "<span>X</span>";
+					task.getElementsByClassName('checkbox')[0].onclick = on_checkbox_click;
+					task.getElementsByTagName('span')[0].onclick = on_x_click;
+					tasks.appendChild(task);	
+					input.value = '';
+					return false;
+				}
+			};
+		</script>
 	</body>
 </html>
