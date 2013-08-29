@@ -1,64 +1,76 @@
-data:text/html, <html> <head> <title>Stopwatch</title> </head> <body> <style>body{font-family:sans-serif;font-size:4rem}#timer{text-align:center;margin-top:25%}span{display:inline-block;margin-left:-0.25em}p{font-size:2rem;color:blue;text-decoration:underline;cursor:pointer}#stop,#cont{display:none;margin-right:1em}#reset{display:none}</style> <div id="timer"> <span id="minutes">00</span> <span>:</span> <span id="seconds">00</span> <span>:</span> <span id="milliseconds">000</span> <p id="start" onclick="startTimer()">Start stopwatch!</p> <p id="stop" onclick="stopTimer()">Stop!</p> <p id="cont" onclick="continueTimer()">Continue</p> <p id="reset" onclick="resetTimer()">Reset</p> </div> <script type="text/javascript">
+data:text/html,
+<html> <head> <title>Stopwatch</title> </head> <body> <style>body{font-family:sans-serif;font-size:4rem}#timer{text-align:center;margin-top:25%}span{display:inline-block;margin-left:-0.25em}p{font-size:2rem;color:blue;text-decoration:underline;cursor:pointer}#stop,#cont{display:none;margin-right:1em}#reset{display:none}</style> <div id="timer"> <span id="minutes">00</span> <span>:</span> <span id="seconds">00</span> <span>:</span> <span id="milliseconds">000</span> <p id="start" onclick="startTimer(minutes, seconds, milliseconds)">Start stopwatch!</p> <p id="stop" onclick="stopTimer()">Stop!</p> <p id="cont" onclick="continueTimer()">Continue</p> <p id="reset" onclick="resetTimer()">Reset</p> </div> <script type="text/javascript">
 			var	watch, milliInterval, secInterval, minInterval;
 			var stop = document.getElementById("stop");
+			var watch = StopWatch();
 
 			minutes.focus();
 
 			function StopWatch() {
 
+				var start;
+
 				var millis,
 					secs,
 					mins;
 
+				var stopmillis = 0,
+					stopsecs = 0,
+					stopmins = 0;
+
+				var started = false;
+
 				return {
 
-					setTime: function(milliseconds, seconds, minutes) {
-						millis = parseInt(milliseconds);
-						secs = parseInt(seconds);
-						mins = parseInt(minutes);
+					start: function() {
+						start = new Date().getTime();
 					},
 
-					getTime: function() {
-						return {
-							milliseconds: millis,
-							seconds: secs,
-							minutes: mins
-						};
+					setTime: function(milliseconds, seconds, minutes) {
+						stopmillis = parseInt(milliseconds);
+						stopsecs = parseInt(seconds);
+						stopmins = parseInt(minutes);
 					},
 
 					reset: function() {
 						millis = 0;
 						secs = 0;
 						mins = 0;
+
+						started = false;
 					},
 
 					update: function(time) {
 						if (time === "milliseconds") {
 							/* minimum browser interval is 5 milliseconds */
-							millis = (millis + 5) % 1000;
+							millis = (stopmillis + new Date().getTime() - start) % 1000;
 							return millis;
 						}
 						else if (time === "seconds") {
-							secs = (secs + 1) % 60;
+							secs = stopsecs + Math.floor(((new Date().getTime() - start)/1000)) % 60;
 							return secs;
 						}
 						else if (time === "minutes") {
-							mins += 1;
+							mins = stopmins + Math.floor((new Date().getTime() - start)/60000);
 							return mins;
 						}
 						else {
 							return;
 						}
 							
-					}
+					},
+
+					started: function() {
+						return started;
+					},
 				};
 
 			};
 
-			function startTimer() {
+			function startTimer(minutes, seconds, millseconds) {
 
-				watch = StopWatch();
-				watch.setTime(minutes.innerText, seconds.innerText, milliseconds.innerText);
+				watch.setTime(milliseconds.innerText, seconds.innerText, minutes.innerText);
+				watch.start();
 
 				milliInterval = window.setInterval(function() {
 					current = String(watch.update("milliseconds"));
@@ -76,12 +88,12 @@ data:text/html, <html> <head> <title>Stopwatch</title> </head> <body> <style>bod
 				secInterval = window.setInterval(function() {
 					current = String(watch.update("seconds"));
 					seconds.innerText = (current.length === 2) ? current : "0" + current;
-				}, 1000);
+				}, 5);
 
 				minInterval = window.setInterval(function() {
 					current = String(watch.update("minutes"));
 					minutes.innerText = (current.length === 2) ? current : "0" + current;
-				}, 60000);
+				}, 5);
 
 				start.style.display = "none";
 				stop.style.display = "block";
@@ -102,7 +114,7 @@ data:text/html, <html> <head> <title>Stopwatch</title> </head> <body> <style>bod
 				cont.style.display = "none";
 				reset.style.display = "none";
 
-				startTimer();
+				startTimer(minutes, seconds, milliseconds);
 			};
 
 			function resetTimer() {
@@ -116,6 +128,7 @@ data:text/html, <html> <head> <title>Stopwatch</title> </head> <body> <style>bod
 				window.clearInterval(milliInterval);
 				window.clearInterval(secInterval);
 				window.clearInterval(minInterval);
+
 				watch.reset();
 
 				start.style.display = "block";
