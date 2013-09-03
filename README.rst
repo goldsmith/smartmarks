@@ -82,7 +82,7 @@ Drag these to your bookmarks bar to keep the Smartmarks for offline use:
     		}
     		resizeCanvas();
 		};
-	</script> <body> <input type="hidden" id="data"/> <canvas id="myCanvas">Sorry, your browser does not support canvas technology.</canvas> </body> </html>>)
+	</script> <body> <input type="hidden" id="data"/> <canvas id="myCanvas">Sorry, your browser does not support canvas technology.</canvas> </body> </html>>`__)
 
 Contributing 
 ------------
