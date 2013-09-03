@@ -32,7 +32,7 @@ Super speedy todo list utlity which let you add, complete, and remove tasks.
 
 Easy Install
 ------------
-Install (`here <https://rawgithub.com/nmoroze/smartmarks/master/install.html>`__).
+Install `here <https://rawgithub.com/nmoroze/smartmarks/master/install.html>`__
 
 Contributing 
 ------------
