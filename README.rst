@@ -3,7 +3,7 @@ Smartmarks
 
 .. image:: logo.gif  
 
-**Smartmarks** is a collection of micro tools and utilities that run from your URL bar, usin the Data URI scheme to create a tiny html + javascript + css page that can be bookmarked and then loaded instantly whenever you need them.
+**Smartmarks** is a collection of micro tools and utilities that run from your URL bar, using the Data URI scheme to create a tiny html + javascript + css page that can be bookmarked and then loaded instantly whenever you need them.
 
 Click the demo link to try out Smartmarks, or click the raw link and paste the source on the page (should start with "data:text/html") into the URL bar to bookmark them.
 
