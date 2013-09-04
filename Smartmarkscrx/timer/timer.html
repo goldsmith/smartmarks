@@ -1,0 +1,61 @@
+<html>
+	<head>
+		<title>Timer</title>
+		<link rel="shortcut icon" href="data:image/gif;base64,R0lGODlhUQBfAPQAAAzykQAzmQAjaAAodwAkawAmcQAmcgAmcwAoeAApegAndgAndAAndQAkbQAlbwAoeQAlcAAlbgAjaQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAksAQAALAAAAABRAF8AAAX/ICCOZGmeaKqubOu+cCzPdG3feK5HfET8BIlwKAQSerok4HCAOAPQqHRKhToNyhmDwax6v1UDI9tSbMHotHRMPine6nh80B4h7vJ8HNF+IPSAcUoJDw+Bh2k6CYuIjWA4iwmOk143D5KUmVM1hZqeUjOdn6MyAwOjqAExpqmoL6ykqS8Lmiu1LrSULpktC7mNMbosDsIvf44txMgyk8nNMg3LK8qINNHSKQTYMNfAKj/bL93V388z5inFMeOBLeh1NuHwNPLzzI1b9vGTbPr3kwUC+oPxKWCBgSxSGUR4ohWUhQxHOJRSwAAWhhOpMEGYscqBBf46elGgT+RIeya9pPCBl7ISy5ZU5sGM+XJmlJo2oeDMudNmxJ9AgwodmkWA0aNIkypdupSoiFZOJX6KWuIWVTvqrgLgZYIA069Kc2SVSu7GMW9a06pdy7at27dOwcpFamPuXBUHxrpgVO+pXhUI+KJFkZcSnRZ3zg5G4SngDxI/LFq0muLUKCPgprrLWXaFZc564IoeTbq06dOoU6tezZqt3dd0r3pyC6i17du4SYcAADs=">
+	</head>
+	<body>
+		<style>
+
+			body {
+				font-family: sans-serif;
+				font-size: 4rem;
+			}
+
+			#timer {
+				text-align: center;
+				margin-top: 25%;
+			}
+
+			span {
+				display: inline-block;
+			}
+
+			span.label {
+				margin-left: -0.25em;
+			}
+
+			p {
+				font-size: 2rem;
+				color: blue;
+				text-decoration: underline;
+				cursor: pointer;
+			}
+
+			#stop, #cont {
+				display: none;
+				margin-right: 1em;
+			}
+
+			#reset {
+				display: none;
+			}
+
+		</style>
+
+		<audio></audio>
+
+		<div id="timer">
+			<span contenteditable id="minutes">0</span>
+			<span class="label">m</span>
+			<span contenteditable id="seconds">0</span>
+			<span class="label">s</span>
+			<p id="start">Start timer!</p>
+			<p id="stop">Stop!</p>
+			<p id="cont">Continue</p>
+			<p id="reset">Reset</p>
+		</div>
+
+		<script src="timer.js">
+		</script>
+	</body>
+</html>
