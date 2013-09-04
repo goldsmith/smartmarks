@@ -6,13 +6,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-	var smartmarks = ["drawpad", "notepad", "timer", "todo"];
+	var smartmarks = ["drawpad", "notepad", "stopwatch", "timer", "todo"];
 	setLink(0);
 
 	function setLink(nameIndex) {
 		if(nameIndex<smartmarks.length) {
 			var mark = smartmarks[nameIndex];
-			$.get("https://rawgithub.com/goldsmith/smartmarks/master/"+mark+"/"+mark+".min.html", 
+			$.get("https://rawgithub.com/nmoroze/smartmarks/master/"+mark+"/"+mark+".min.html", 
 				function(result) {
 					$("#"+mark).attr("href", result);
 					$("#"+mark).html(mark);
@@ -22,7 +22,6 @@ $(document).ready(function() {
 		}
 	}
 });
-
 
 
 </script>
@@ -38,10 +37,9 @@ Drag and drop into your bookmarks bar to install:
 	<li>
 		<a id="notepad" href="">Loading...</a>
 	</li>
-<!-- 	<li>
+	<li>
 		<a id="stopwatch" href="">Loading...</a>
-		Stopwatch broken
-	</li> -->
+	</li> 
 	<li>
 		<a id="timer" href="">Loading...</a>
 	</li>
