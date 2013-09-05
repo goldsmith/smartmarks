@@ -12,7 +12,7 @@ $(document).ready(function() {
 	function setLink(nameIndex) {
 		if(nameIndex<smartmarks.length) {
 			var mark = smartmarks[nameIndex];
-			$.get("https://rawgithub.com/nmoroze/smartmarks/master/"+mark+"/"+mark+".min.html", 
+			$.get("https://rawgithub.com/goldsmith/smartmarks/master/"+mark+"/"+mark+".min.html", 
 				function(result) {
 					$("#"+mark).attr("href", result);
 					$("#"+mark).html(mark);
