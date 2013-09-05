@@ -1,51 +1,78 @@
 <html>
-<head>
-<title>Install Smartmarks!</title>
-<link rel="shortcut icon" href="data:image/gif;base64,R0lGODlhUQBfAPQAAAzykQAzmQAjaAAodwAkawAmcQAmcgAmcwAoeAApegAndgAndAAndQAkbQAlbwAoeQAlcAAlbgAjaQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAksAQAALAAAAABRAF8AAAX/ICCOZGmeaKqubOu+cCzPdG3feK5HfET8BIlwKAQSerok4HCAOAPQqHRKhToNyhmDwax6v1UDI9tSbMHotHRMPine6nh80B4h7vJ8HNF+IPSAcUoJDw+Bh2k6CYuIjWA4iwmOk143D5KUmVM1hZqeUjOdn6MyAwOjqAExpqmoL6ykqS8Lmiu1LrSULpktC7mNMbosDsIvf44txMgyk8nNMg3LK8qINNHSKQTYMNfAKj/bL93V388z5inFMeOBLeh1NuHwNPLzzI1b9vGTbPr3kwUC+oPxKWCBgSxSGUR4ohWUhQxHOJRSwAAWhhOpMEGYscqBBf46elGgT+RIeya9pPCBl7ISy5ZU5sGM+XJmlJo2oeDMudNmxJ9AgwodmkWA0aNIkypdupSoiFZOJX6KWuIWVTvqrgLgZYIA069Kc2SVSu7GMW9a06pdy7at27dOwcpFamPuXBUHxrpgVO+pXhUI+KJFkZcSnRZ3zg5G4SngDxI/LFq0muLUKCPgprrLWXaFZc564IoeTbq06dOoU6tezZqt3dd0r3pyC6i17du4SYcAADs=">
+	<head>
+	<title>Install Smartmarks!</title>
+	<link rel="shortcut icon" href="data:image/gif;base64,R0lGODlhUQBfAPQAAAzykQAzmQAjaAAodwAkawAmcQAmcgAmcwAoeAApegAndgAndAAndQAkbQAlbwAoeQAlcAAlbgAjaQAAAAAAAAAAAAAAAAAAA	AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAksAQAALAAAAABRAF8AAAX/ICCOZGmeaKqubOu+cCzPdG3feK5HfET8BIlwKAQSerok4HCAOAPQqHRKhToNyhmDwax6v1UDI9tSbMHotHRMPine6nh80B4h7vJ8HNF+IPSA	cUoJDw+Bh2k6CYuIjWA4iwmOk143D5KUmVM1hZqeUjOdn6MyAwOjqAExpqmoL6ykqS8Lmiu1LrSULpktC7mNMbosDsIvf44txMgyk8nNMg3LK8qINNHSKQTYMNfAKj/bL93V388z5inFMeOBLeh1NuHwNPLzzI1b9vGTbPr	3kwUC+oPxKWCBgSxSGUR4ohWUhQxHOJRSwAAWhhOpMEGYscqBBf46elGgT+RIeya9pPCBl7ISy5ZU5sGM+XJmlJo2oeDMudNmxJ9AgwodmkWA0aNIkypdupSoiFZOJX6KWuIWVTvqrgLgZYIA069Kc2SVSu7GMW9a06pdy7	at27dOwcpFamPuXBUHxrpgVO+pXhUI+KJFkZcSnRZ3zg5G4SngDxI/LFq0muLUKCPgprrLWXaFZc564IoeTbq06dOoU6tezZqt3dd0r3pyC6i17du4SYcAADs=">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	
+	<style>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function() {
-	var smartmarks = ["drawpad", "notepad", "stopwatch", "timer", "todo"];
-	setLink(0);
-
-	function setLink(nameIndex) {
-		if(nameIndex<smartmarks.length) {
-			var mark = smartmarks[nameIndex];
-			$.get("https://rawgithub.com/goldsmith/smartmarks/master/"+mark+"/"+mark+".min.html", 
-				function(result) {
-					$("#"+mark).attr("href", result);
-					$("#"+mark).html(mark);
-					setLink(nameIndex+1);
-				}
-			);
+		body {
+			font-family: sans-serif;
+			text-align: center;
+			font-size: 2em;
 		}
-	}
-});
 
+		#logo {
+			display: block;
+			margin: 50px auto 0 auto;
+		}
+	
+		ul {
+			text-align: center;
+			width: 100%;
+			margin-top: 100px;
+		}
 
-</script>
-</head>
+		li {
+			display: inline;
+			margin-right: 10%;
+		}
+
+		li a {
+			text-decoration: none;
+		}
+
+	</style>
+	</head>
 <body>
-<img src="https://raw.github.com/goldsmith/smartmarks/master/logo.gif">
-<br>
-Drag and drop into your bookmarks bar to install:
-<ul>
-	<li>
-		<a id="drawpad" href="">Loading...</a>
-	</li>
-	<li>
-		<a id="notepad" href="">Loading...</a>
-	</li>
-	<li>
-		<a id="stopwatch" href="">Loading...</a>
-	</li> 
-	<li>
-		<a id="timer" href="">Loading...</a>
-	</li>
-	<li>
-		<a id="todo" href="">Loading...</a>
-	</li>
-</ul>
+	<a href="https://github.com/goldsmith/smartmarks/"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+	<img id="logo" src="https://raw.github.com/goldsmith/smartmarks/master/logo.gif">
+	<br>
+	Drag and drop into your bookmarks bar to install:
+	<ul>
+		<li>
+			<a id="drawpad" href="">Loading...</a>
+		</li>
+		<li>
+			<a id="notepad" href="">Loading...</a>
+		</li>
+		<li>
+			<a id="stopwatch" href="">Loading...</a>
+		</li> 
+		<li>
+			<a id="timer" href="">Loading...</a>
+		</li>
+		<li>
+			<a id="todo" href="">Loading...</a>
+		</li>
+	</ul>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			smartmarks = ["drawpad", "notepad", "stopwatch", "timer", "todo"];
+
+			for (var key in smartmarks) {
+				var mark = smartmarks[key];
+				setMark(mark);
+			}
+
+			function setMark(mark) {
+				$.get("https://rawgithub.com/goldsmith/smartmarks/master/" + mark + "/" + mark + ".min.html", function(result) {
+					$("#"+mark).attr("href", result);
+					$("#"+mark).text(mark);
+				});
+			}
+		});
+	</script>
 </body>
 </html>
