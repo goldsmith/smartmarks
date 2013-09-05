@@ -24,7 +24,7 @@ Keep track of how much time has passed to the millisecond.
 
 **Timer** (`demo <https://rawgithub.com/goldsmith/smartmarks/master/timer/timer.html>`__)
 
-A countdown timer that sounds and alarm and triggers an alert (to switch context) when it is finished. 
+A countdown timer that sounds an alarm and triggers an alert (to switch context) when it is finished. 
 
 **Todo** (`demo <https://rawgithub.com/goldsmith/smartmarks/master/todo/todo.html>`__)
 
