@@ -5,34 +5,30 @@ Smartmarks
 
 **Smartmarks** is a collection of micro tools and utilities that run from your URL bar, using the Data URI scheme to create a tiny html + javascript + css page that can be bookmarked and then loaded instantly whenever you need them.
 
-Click the demo link to try out Smartmarks, or click the raw link and paste the source on the page (should start with "data:text/html") into the URL bar to bookmark them.
+Click one of the demo links to try out Smartmarks, or visit the `easy install <https://rawgithub.com/goldsmith/smartmarks/master/install.html>`_ page and drag the links to your bookmark bar to keep them easily accessible.
 
 The Smartmarks
 --------------
 
-**Drawpad** (`demo <https://rawgithub.com/goldsmith/smartmarks/master/drawpad/drawpad.html>`__) (`raw <https://raw.github.com/goldsmith/smartmarks/master/drawpad/drawpad.min.html>`__)
+**Drawpad** (`demo <https://rawgithub.com/goldsmith/smartmarks/master/drawpad/drawpad.html>`__)
 
 A minimalistic sketchpad that you can use to draw simple sketches and mockups (inspired heavily by/stolen from `Daniel Fernandez <http://dfernandez.me/articles/3%20-%20drawing%20bookmarklet/>`__)
 
-**Notepad** (`demo <https://rawgithub.com/goldsmith/smartmarks/master/notepad/notepad.html>`__) (`raw <https://raw.github.com/goldsmith/smartmarks/master/notepad/notepad.min.html>`__)
+**Notepad** (`demo <https://rawgithub.com/goldsmith/smartmarks/master/notepad/notepad.html>`__)
 
 A clean and simple place to jot some thoughts down. Use keyboard shortcuts (ctrl+b, ctrl+i, etc) for bold, italics, and other formatting.
 
-**Stopwatch** (`demo <https://rawgithub.com/goldsmith/smartmarks/master/stopwatch/stopwatch.html>`__) (`raw <https://raw.github.com/goldsmith/smartmarks/master/stopwatch/stopwatch.min.html>`__)
+**Stopwatch** (`demo <https://rawgithub.com/goldsmith/smartmarks/master/stopwatch/stopwatch.html>`__)
 
 Keep track of how much time has passed to the millisecond. 
 
-**Timer** (`demo <https://rawgithub.com/goldsmith/smartmarks/master/timer/timer.html>`__) (`raw <https://raw.github.com/goldsmith/smartmarks/master/timer/timer.min.html>`__)
+**Timer** (`demo <https://rawgithub.com/goldsmith/smartmarks/master/timer/timer.html>`__)
 
 A countdown timer that sounds and alarm and triggers an alert (to switch context) when it is finished. 
 
-**Todo** (`demo <https://rawgithub.com/goldsmith/smartmarks/master/todo/todo.html>`__) (`raw <https://raw.github.com/goldsmith/smartmarks/master/todo/todo.min.html>`__)
+**Todo** (`demo <https://rawgithub.com/goldsmith/smartmarks/master/todo/todo.html>`__)
 
 Super speedy todo list utlity which let you add, complete, and remove tasks.
-
-Easy Install
-------------
-Install `here <https://rawgithub.com/goldsmith/smartmarks/master/install.html>`__.
 
 Contributing 
 ------------
