@@ -30,6 +30,10 @@ A countdown timer that sounds and alarm and triggers an alert (to switch context
 
 Super speedy todo list utlity which let you add, complete, and remove tasks.
 
+Easy Install
+------------
+Install `here <https://rawgithub.com/goldsmith/smartmarks/master/install.html>`__.
+
 Contributing 
 ------------
 
