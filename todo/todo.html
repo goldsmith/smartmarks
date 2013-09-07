@@ -63,6 +63,18 @@
         <script type="text/javascript">
             var input = document.getElementsByTagName('textarea')[0];
 
+            var tasksToLoad = [];
+            if(localStorage.getItem("tasks"))
+                tasksToLoad = JSON.parse(localStorage.getItem("tasks"));
+
+            for(var i=0; i<tasksToLoad.length; i++) {
+                var task = addTodo(tasksToLoad[i][0]);
+                if(tasksToLoad[i][1]) {
+                    task.classList.add("completed");
+                    task.childNodes[0].innerText = "X"
+                }
+            }
+
             function on_checkbox_click(e) {
                 if (this.innerText === "") {
                     this.innerText = "X";
@@ -77,16 +89,30 @@
             function on_x_click(e) {
                 tasks.removeChild(this.parentElement)
             }
-        
+
+            window.onbeforeunload = function (e) {
+                var tasksToSave = document.getElementsByClassName("task");
+                var toSaveArray = [];
+                for (var i = 0; i < tasksToSave.length; ++i) {
+                    toSaveArray[i] = [tasksToSave[i].childNodes[1].textContent, tasksToSave[i].classList.contains("completed")];
+                }
+                localStorage.setItem("tasks", JSON.stringify(toSaveArray));
+            };
+
+            function addTodo(value) {
+                var task = document.createElement("div");
+                task.className = "task";
+                task.innerHTML = "<div class='checkbox'></div>" + value + "<span>X</span>";
+                task.getElementsByClassName('checkbox')[0].onclick = on_checkbox_click;
+                task.getElementsByTagName('span')[0].onclick = on_x_click;
+                tasks.appendChild(task);
+                return task; 
+            }
+
             input.onkeydown = function(e) {
                 if (e.which === 13) {
-                    var task = document.createElement("div");
-                    task.className = "task";
-                    task.innerHTML = "<div class='checkbox'></div>" + input.value + "<span>X</span>";
-                    task.getElementsByClassName('checkbox')[0].onclick = on_checkbox_click;
-                    task.getElementsByTagName('span')[0].onclick = on_x_click;
-                    tasks.appendChild(task);
-                    input.value = '';
+                    addTodo(input.value);
+                    input.value='';
                     return false;
                 }
             };
