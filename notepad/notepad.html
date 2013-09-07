@@ -16,6 +16,14 @@
 				padding: 5rem 10rem;
 			}		
 		</style>
-		<textarea autofocus placeholder="Shortcuts: <ctrl> + i for italics, <ctrl> + u for underline, and <ctrl> + s for save..."></textarea>
+		<textarea autofocus id="text" placeholder="Shortcuts: <ctrl> + i for italics, <ctrl> + u for underline, and <ctrl> + s for save..."></textarea>
+		<script type="text/javascript">
+			var text = document.getElementById("text");
+			text.value = localStorage.getItem("text");
+
+			window.onbeforeunload = function (e) {
+				localStorage.setItem("text", text.value);
+			};
+		</script>
 	</body>
 </html>
